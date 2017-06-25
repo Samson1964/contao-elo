@@ -61,19 +61,35 @@ class Elo extends \Module
 	{
 		$this->import('Database');
 
+		$cachetime = 3600 * 24 * 40; // 40 Tage
+
 		// Aktuelle Liste ermitteln
 		$objActiv = $this->Database->prepare('SELECT * FROM tl_elo_listen WHERE published=? ORDER BY datum DESC')
-								   ->limit(1)
+		                           ->limit(1)
 		                           ->execute(1);
+
+		// Cache initialisieren
+		//$cache = new \Samson\Cache();
+		//$cache->eraseExpired(); // Cache aufräumen, abgelaufene Schlüssel löschen
 
 		$this->Template->headline = 'FIDE-Ratingliste Deutschland';
 		$this->Template->hl = 'h2';
-		$this->Template->datum = \Samson\Helper::getDate($objActiv->datum);
+		$this->Template->datum = date('d.m.Y', $objActiv->datum).' ('.$objActiv->title.')';
 
 		// Toplisten laden
-		$objEloN = $this->Database->prepare('SELECT * FROM tl_elo WHERE pid=? AND published=? AND flag NOT LIKE ? ORDER BY rating DESC')
-								   ->limit($this->elo_topcount)
-		                           ->execute($objActiv->id, 1, '%i%');
+		// Cache laden
+		//if($cache->isCached('EloN_'.$objActiv->id))
+		//{
+		//	//$objEloN = $cache->retrieve('EloN_'.$objActiv->id);
+		//}
+		//else
+		//{
+			$objEloN = $this->Database->prepare('SELECT * FROM tl_elo WHERE pid=? AND published=? AND flag NOT LIKE ? ORDER BY rating DESC')
+			                           ->limit($this->elo_topcount)
+			                           ->execute($objActiv->id, 1, '%i%');
+			//$cache->store('EloN_'.$objActiv->id, $objEloN, $cachetime);
+		//}
+
 		$objEloB = $this->Database->prepare('SELECT * FROM tl_elo WHERE pid=? AND published=? AND flag NOT LIKE ? ORDER BY blitz_rating DESC')
 								   ->limit($this->elo_topcount)
 		                           ->execute($objActiv->id, 1, '%i%');
@@ -97,9 +113,9 @@ class Elo extends \Module
 			// Datensätze anzeigen
 			while($objEloN->next()) 
 			{
-		        $line = $objEloN->intent;
-		        $line .= ($line) ? ' '.$objEloN->prename : $objEloN->prename; 
-		        $line .= ($line) ? ' '.$objEloN->surname : $objEloN->surname; 
+				$line = $objEloN->intent;
+				$line .= ($line) ? ' '.$objEloN->prename : $objEloN->prename; 
+				$line .= ($line) ? ' '.$objEloN->surname : $objEloN->surname; 
 				$eloN[] = array
 				(
 					'name' 	=> $line,
@@ -117,9 +133,9 @@ class Elo extends \Module
 			// Datensätze anzeigen
 			while($objEloB->next()) 
 			{
-		        $line = $objEloB->intent;
-		        $line .= ($line) ? ' '.$objEloB->prename : $objEloB->prename; 
-		        $line .= ($line) ? ' '.$objEloB->surname : $objEloB->surname; 
+				$line = $objEloB->intent;
+				$line .= ($line) ? ' '.$objEloB->prename : $objEloB->prename; 
+				$line .= ($line) ? ' '.$objEloB->surname : $objEloB->surname; 
 				$eloB[] = array
 				(
 					'name' 	=> $line,
@@ -137,9 +153,9 @@ class Elo extends \Module
 			// Datensätze anzeigen
 			while($objEloR->next()) 
 			{
-		        $line = $objEloR->intent;
-		        $line .= ($line) ? ' '.$objEloR->prename : $objEloR->prename; 
-		        $line .= ($line) ? ' '.$objEloR->surname : $objEloR->surname; 
+				$line = $objEloR->intent;
+				$line .= ($line) ? ' '.$objEloR->prename : $objEloR->prename; 
+				$line .= ($line) ? ' '.$objEloR->surname : $objEloR->surname; 
 				$eloR[] = array
 				(
 					'name' 	=> $line,
@@ -157,9 +173,9 @@ class Elo extends \Module
 			// Datensätze anzeigen
 			while($objEloNw->next()) 
 			{
-		        $line = $objEloNw->intent;
-		        $line .= ($line) ? ' '.$objEloNw->prename : $objEloNw->prename; 
-		        $line .= ($line) ? ' '.$objEloNw->surname : $objEloNw->surname; 
+				$line = $objEloNw->intent;
+				$line .= ($line) ? ' '.$objEloNw->prename : $objEloNw->prename; 
+				$line .= ($line) ? ' '.$objEloNw->surname : $objEloNw->surname; 
 				$eloNw[] = array
 				(
 					'name' 	=> $line,
@@ -177,9 +193,9 @@ class Elo extends \Module
 			// Datensätze anzeigen
 			while($objEloBw->next()) 
 			{
-		        $line = $objEloBw->intent;
-		        $line .= ($line) ? ' '.$objEloBw->prename : $objEloBw->prename; 
-		        $line .= ($line) ? ' '.$objEloBw->surname : $objEloBw->surname; 
+				$line = $objEloBw->intent;
+				$line .= ($line) ? ' '.$objEloBw->prename : $objEloBw->prename; 
+				$line .= ($line) ? ' '.$objEloBw->surname : $objEloBw->surname; 
 				$eloBw[] = array
 				(
 					'name' 	=> $line,
@@ -197,9 +213,9 @@ class Elo extends \Module
 			// Datensätze anzeigen
 			while($objEloRw->next()) 
 			{
-		        $line = $objEloRw->intent;
-		        $line .= ($line) ? ' '.$objEloRw->prename : $objEloRw->prename; 
-		        $line .= ($line) ? ' '.$objEloRw->surname : $objEloRw->surname; 
+				$line = $objEloRw->intent;
+				$line .= ($line) ? ' '.$objEloRw->prename : $objEloRw->prename; 
+				$line .= ($line) ? ' '.$objEloRw->surname : $objEloRw->surname; 
 				$eloRw[] = array
 				(
 					'name' 	=> $line,

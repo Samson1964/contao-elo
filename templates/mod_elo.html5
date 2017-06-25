@@ -12,7 +12,7 @@
 			<span class="slider-menu"></span>
 			<a href="#" class="slider-next">Vorwärts</a>
 		</nav>
-		<div class="content-slider" data-config="9000,3100,0,1">
+		<div class="content-slider" data-config="7000,2500,0,1">
 			<div class="slider-wrapper">
 				<div class="ce_text block">
 					<h3>Top <?= $this->count ?> Turnierschach</h3>
@@ -65,7 +65,5 @@
 			</div>
 		</div>
 	</div>
-
-	<p class="portalboxlink"><a href="aktuelle-elolisten.html">Komplette Listen</a></p>
 	
 </div>

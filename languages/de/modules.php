@@ -1,24 +1,21 @@
-<?php
+<?php 
 
 /**
  * Contao Open Source CMS
+ * Copyright (C) 2005-2014 Leo Feyer
  *
- * Copyright (c) 2005-2015 Leo Feyer
- *
- * @package   Elo
- * @author    Frank Hoppe
- * @license   GNU/LPGL
- * @copyright Frank Hoppe 2016
  */
-
 
 /**
- * Back end modules
+ * Backend-Modul Übersetzungen
  */
-$GLOBALS['TL_LANG']['MOD'][''] = array('', '');
-
+$GLOBALS["TL_LANG"]["MOD"]["elo"][0] = "Elo-Listen";
+$GLOBALS["TL_LANG"]["MOD"]["elo"][1] = "Elo-Listen der FIDE verwalten";
 
 /**
- * Front end modules
+ * Frontendmodule
  */
-$GLOBALS['TL_LANG']['FMD'][''] = array('', '');
+$GLOBALS['TL_LANG']['FMD']['elo'][0] = 'Elo-Listen';
+
+$GLOBALS['TL_LANG']['FMD']['elo_toplist'][0] = 'Elo-Topliste';
+$GLOBALS['TL_LANG']['FMD']['elo_toplist'][1] = 'Elo-Topliste anzeigen';
