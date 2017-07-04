@@ -42,11 +42,17 @@ $GLOBALS['BE_MOD']['dsb']['elo'] = array
 
 
 /**
- * FRONT END MODULES
+ * Frontend-Module
  */
 
 $GLOBALS['FE_MOD']['elo'] = array
 (
-	'elo_toplist' => 'Samson\Elo\Elo',
-);  
+	'elo_toplist'    => 'Samson\Elo\Elo',
+);
+
+/**
+ * Inhaltselemente
+ */
+
+$GLOBALS['TL_CTE']['schach']['eloliste'] = 'Samson\Elo\EloArchiv'; 
 

@@ -4,8 +4,8 @@ ini_set('memory_limit', '1024M');
 set_time_limit(0);
 
 $xmlFile = 'players_list_xml_foa.xml';
-$listdate = 20170531;
-$pid = 59; // ID der Eloliste in Contao
+$listdate = 20170630;
+$pid = 60; // ID der Eloliste in Contao
 
 // Datei zeilenweise lesen und in temporäre Dateien aufteilen
 $x = 1;

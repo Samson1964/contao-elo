@@ -16,3 +16,7 @@
  * Miscellaneous
  */
 $GLOBALS['TL_LANG']['MSC'][''] = '';
+
+$GLOBALS['TL_LANG']['CTE']['schach'] = "Schach-Elemente";
+$GLOBALS['TL_LANG']['CTE']['eloliste']['0'] = "FIDE-Eloliste";
+$GLOBALS['TL_LANG']['CTE']['eloliste']['1'] = "FIDE-Eloliste einbinden";

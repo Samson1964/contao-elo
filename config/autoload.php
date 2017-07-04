@@ -24,7 +24,8 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Samson\Elo\Elo' => 'system/modules/elo/classes/Elo.php',
+	'Samson\Elo\Elo'       => 'system/modules/elo/classes/Elo.php',
+	'Samson\Elo\EloArchiv' => 'system/modules/elo/classes/EloArchiv.php',
 ));
 
 
@@ -33,5 +34,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'mod_elo' => 'system/modules/elo/templates',
+	'mod_elo'        => 'system/modules/elo/templates',
+	'ce_eloliste'    => 'system/modules/elo/templates',
 ));
