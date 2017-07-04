@@ -53,7 +53,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['eloliste_typ'] = array
 	(
 		'tl_class'       => 'w50'
 	),
-	'sql'                  => "VARCHAR(5) NOT NULL default ''"
+	'sql'                  => "varchar(5) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['eloliste_number'] = array
